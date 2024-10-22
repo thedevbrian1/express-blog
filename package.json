@@ -1,0 +1,26 @@
+{
+  "name": "express-blog",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch index.js",
+    "build:css": "NODE_ENV=production tailwindcss -o ./public/output.css",
+    "dev:css": "tailwindcss -o ./public/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "lucide": "^0.453.0",
+    "mongodb": "^6.10.0",
+    "pug": "^3.0.3"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.14"
+  }
+}

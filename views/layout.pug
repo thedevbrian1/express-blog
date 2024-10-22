@@ -1,0 +1,24 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/output.css")
+
+        title= title
+    body 
+        header(class="bg-slate-800 p-6 flex justify-between items-center text-gray-200") 
+            img(src="https://cdn.pixabay.com/photo/2022/08/22/02/05/logo-7402513_640.png" width="40px" alt="Logo")
+            nav 
+                ul(class="hidden lg:flex lg:gap-4") 
+                    li(class="hover:text-gray-400 transition ease-in-out duration-300") 
+                        a(href="/") Home 
+                    li(class="hover:text-gray-400 transition ease-in-out duration-300") 
+                        a(href="/") Join us 
+                    li(class="hover:text-gray-400 transition ease-in-out duration-300") 
+                        a(href="/") About us
+            a(href="/subscribe" class="bg-orange-600 px-6 py-3 rounded-md") Subscribe
+        block content 
+
+        footer(class="w-full flex justify-center py-4") 
+            p Copyright &copy; #{new Date().getFullYear()}
