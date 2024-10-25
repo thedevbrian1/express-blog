@@ -1,0 +1,42 @@
+extends layout 
+block content 
+    main(class="mt-8 md:mt-36 px-6 md:px-0 lg:max-w-4xl mx-auto text-gray-800")
+        a(href="/" class="flex items-center gap-2 hover:underline") 
+            <i class="fa-solid fa-arrow-left"></i> Back to articles
+        div(class="flex justify-between items-center")
+            h1(class="font-semibold text-2xl lg:text-4xl mt-4")= blog.title 
+            a(href=`/posts/${blog._id}/edit` class="border border-orange-500 px-4 py-2 rounded-md flex gap-2 hover:bg-gray-100 transition ease-in-out duration-300") 
+               <i class="fa-light fa-pencil"></i> Edit post 
+        img(src= blog.image class="mt-8 rounded-md")
+        div(class="mt-16")= blog.content
+        form(action="/add-comment" method="post")
+            input(type="hidden", name="intent" value="like-and-dislike")
+            div(class="flex gap-4 mt-4")
+                button(type="submit" name="_action" value="like") 
+                    <i class="fa-regular fa-thumbs-up"></i>
+                button(type="submit" name="_action" value="dislike") 
+                    <i class="fa-regular fa-thumbs-down"></i>
+        div(class="mt-8 bg-gray-50 p-4 lg:p-8 rounded-lg") 
+            h2(class="font-semibold text-lg") Add comment
+            form(action="/add-comment", method="post")
+                input(type="hidden", name="id" value= blog._id)
+                input(type="hidden", name="intent" value="comment")
+                
+                label(for="username" class="mt-4 inline-block") Username 
+                input(type="text", name="username" id="username" class="w-full block px-4 py-2 rounded-md mt-2 border border-gray-300 focus:outline-none focus:border-none focus:ring-2 focus:ring-orange-500 transition ease-in-out duration-300")
+
+                label(for="comment" class="mt-4 inline-block") Comment 
+                textarea(name="comment" id="comment" class="w-full block px-4 py-2 rounded-md mt-2 border border-gray-300 focus:outline-none focus:border-none focus:ring-2 focus:ring-orange-500 transition ease-in-out duration-300")    
+
+                button(type="submit" class="mt-4 text-white bg-green-500 hover:bg-green-300 transition ease-in-out duration-300 px-4 py-2 rounded-md active:scale-[.97]") Submit
+            if blog.comments 
+                div(class="mt-4") 
+                    h2(class="font-semibold text-md") Comments
+                    div(class="mt-4 grid gap-4") 
+                        each comment in blog.comments 
+                            div(class="border border-gray-200 p-4 rounded-md") 
+                                div(class="flex gap-2 items-center")
+                                    span(class="w-10 h-10 rounded-full bg-orange-500 text-black grid place-items-center")= comment.username.charAt(0)
+                                    p(class="text-sm")= comment.username
+                                p(class="mt-4")= comment.comment 
+                                   

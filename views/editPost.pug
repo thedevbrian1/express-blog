@@ -1,0 +1,27 @@
+extends layout 
+block content 
+
+    main 
+        h1 Edit #{blog.title}
+        form(action="", method="post" class="grid gap-4 shadow p-4 md:p-6 lg:p-8 bg-gray-50 rounded-md mt-8")
+            div 
+                label(for="title") Title 
+                input(type="text", name="title" id="title" value=blog.title class="w-full block px-4 py-2 rounded-md mt-2 focus:outline-none focus:border-none focus:ring-2 focus:ring-orange-500 transition ease-in-out duration-300") 
+
+            div
+                label(for="content") Content 
+                textarea(name="content" id="content" value=blog.content class="w-full block px-4 py-2 rounded-md mt-2 focus:outline-none focus:border-none focus:ring-2 focus:ring-orange-500 transition ease-in-out duration-300")
+
+            div
+                label(for="image") Image poster 
+                input(type="text", name="image" id="image" value=blog.image placeholder="https://imageurl.com" class="w-full block px-4 py-2 rounded-md mt-2 focus:outline-none focus:border-none focus:ring-2 focus:ring-orange-500 transition ease-in-out duration-300")
+
+            div
+                label(for="author-name") Author name 
+                input(type="text", name="author-name" id="author-name" value=blog.author_name class="w-full block px-4 py-2 rounded-md mt-2 focus:outline-none focus:border-none focus:ring-2 focus:ring-orange-500 transition ease-in-out duration-300")
+
+            div
+                label(for="author-image") Author image 
+                input(type="text", name="author-image" id="author-image" value=blog.author_image placeholder="https://imageurl.com" class="w-full block px-4 py-2 rounded-md mt-2 focus:outline-none focus:border-none focus:ring-2 focus:ring-orange-500 transition ease-in-out duration-300")
+
+            button(type="submit" class="bg-green-700 hover:bg-green-500 transition ease-in-out duration-300 px-6 py-3 rounded-lg text-white focus:outline-none focus:border-none focus:ring-2 focus:ring-orange-500 active:scale-[.97]") Save post      

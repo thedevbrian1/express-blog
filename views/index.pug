@@ -2,52 +2,55 @@ extends layout
 block content 
 
     main(class="bg-gray-100 text-gray-800")
-        section(class="px-6 lg:max-w-4xl xl:max-w-6xl mx-auto pt-8 lg:pt-36 grid lg:grid-cols-2 gap-4 lg:gap-8") 
-            article(class="space-y-4")
-                h2(class="font-semibold text-3xl lg:text-5xl") Lorem ipsum dolor sit amet.
+        section(class="px-6 lg:max-w-4xl xl:max-w-6xl mx-auto pt-8 lg:pt-36 grid lg:grid-cols-3 gap-4 lg:gap-8") 
+            article(class="space-y-4 lg:col-span-2")
+                h2(class="font-semibold text-3xl lg:text-5xl")
+                    a(href=`/posts/${blogs[0]._id}`) #{blogs[0].title}
                 div(class="flex gap-4")
                     p(class="text-orange-500") Olympics
                     p 4 min read
-                img(src="https://images.unsplash.com/photo-1570498839593-e565b39455fc?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt="" class="aspect-video object-cover rounded-lg")
+                img(src=blogs[0].image, alt="" class="aspect-video object-cover rounded-lg")
                     //- Author
                 div(class="flex gap-2 items-center") 
-                    img(src="https://images.unsplash.com/photo-1575846171058-979e0c211b54?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt="Author image" class="w-12 h-12 rounded-full object-cover")
-                    p John Doe
-            div(class="space-y-8")   
-                article(class="space-y-4")
-                    h2(class="font-semibold text-xl") Lorem ipsum dolor sit amet.
-                    div(class="flex gap-4")
-                        p(class="text-orange-500") Olympics
-                        p 4 min read
-                    img(src="https://images.unsplash.com/photo-1570498839593-e565b39455fc?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt="" class="aspect-video object-cover rounded-lg")
-                    //- Author
-                    div(class="flex gap-2 items-center") 
-                        img(src="https://images.unsplash.com/photo-1575846171058-979e0c211b54?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt="Author image" class="w-12 h-12 rounded-full object-cover")
-                        p John Doe
+                    img(src=blogs[0].author_image, alt="Author image" class="w-12 h-12 rounded-full object-cover")
+                    p= blogs[0].author_name
+            div(class="space-y-8 lg:col-span-1")
+                each blog in blogs.slice(1)    
+                    article(class="space-y-4")
+                        h2(class="font-semibold text-xl")
+                            a(href=`/posts/${blog._id}`) #{blog.title}
+                        div(class="flex gap-4")
+                            p(class="text-orange-500") Olympics
+                            p 4 min read
+                        img(src=blog.image, alt="" class="aspect-video object-cover rounded-lg")
+                        //- Author
+                        div(class="flex gap-2 items-center") 
+                            img(src=blog.author_image, alt="Author image" class="w-12 h-12 rounded-full object-cover")
+                            p= blog.author_name
 
-                article(class="space-y-4")
-                    h2(class="font-semibold text-xl") Lorem ipsum dolor sit amet.
-                    div(class="flex gap-4")
-                        p(class="text-orange-500") Olympics
-                        p 4 min read
-                    img(src="https://images.unsplash.com/photo-1570498839593-e565b39455fc?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt="" class="aspect-video object-cover rounded-lg")
-                    //- Author
-                    div(class="flex gap-2 items-center") 
-                        img(src="https://images.unsplash.com/photo-1575846171058-979e0c211b54?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt="Author image" class="w-12 h-12 rounded-full object-cover")
-                        p John Doe
+                //- article(class="space-y-4")
+                //-     h2(class="font-semibold text-xl") Lorem ipsum dolor sit amet.
+                //-     div(class="flex gap-4")
+                //-         p(class="text-orange-500") Olympics
+                //-         p 4 min read
+                //-     img(src="https://images.unsplash.com/photo-1570498839593-e565b39455fc?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt="" class="aspect-video object-cover rounded-lg")
+                //-     //- Author
+                //-     div(class="flex gap-2 items-center") 
+                //-         img(src="https://images.unsplash.com/photo-1575846171058-979e0c211b54?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt="Author image" class="w-12 h-12 rounded-full object-cover")
+                //-         p John Doe
 
-                article(class="space-y-4")
-                    h2(class="font-semibold text-xl") Lorem ipsum dolor sit amet.
-                    div(class="flex gap-4")
-                        p(class="text-orange-500") Olympics
-                        p 4 min read
-                    img(src="https://images.unsplash.com/photo-1570498839593-e565b39455fc?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt="" class="aspect-video object-cover rounded-lg")
-                    //- Author
-                    div(class="flex gap-2 items-center") 
-                        img(src="https://images.unsplash.com/photo-1575846171058-979e0c211b54?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt="Author image" class="w-12 h-12 rounded-full object-cover")
-                        p John Doe
+                //- article(class="space-y-4")
+                //-     h2(class="font-semibold text-xl") Lorem ipsum dolor sit amet.
+                //-     div(class="flex gap-4")
+                //-         p(class="text-orange-500") Olympics
+                //-         p 4 min read
+                //-     img(src="https://images.unsplash.com/photo-1570498839593-e565b39455fc?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt="" class="aspect-video object-cover rounded-lg")
+                //-     //- Author
+                //-     div(class="flex gap-2 items-center") 
+                //-         img(src="https://images.unsplash.com/photo-1575846171058-979e0c211b54?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt="Author image" class="w-12 h-12 rounded-full object-cover")
+                //-         p John Doe
 
-                article(class="space-y-4")
+                //- article(class="space-y-4")
                     h2(class="font-semibold text-xl") Lorem ipsum dolor sit amet.
                     div(class="flex gap-4")
                         p(class="text-orange-500") Olympics
