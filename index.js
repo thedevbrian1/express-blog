@@ -30,7 +30,7 @@ app.get("/", async (req, res) => {
   let blogs = await collection.find().toArray();
   console.log({ blogs });
 
-  res.render("index", { title: "Blog", blogs });
+  res.render("index", { title: "Blog", blogs, favicon: "/images/pencil.svg" });
 });
 
 // New blog route
@@ -49,7 +49,7 @@ app.get("/posts/:id", async (req, res) => {
   let blog = await collection.findOne({ _id: new ObjectId(id) });
 
   console.log({ blog });
-  res.render("post", { title: blog.title, blog });
+  res.render("post", { title: blog.title, blog, favicon: "" });
 });
 
 // Route for editing a post
@@ -161,6 +161,47 @@ app.post("/add-comment", async (req, res) => {
     console.log({ result });
     res.redirect(`/posts/${id}`);
   }
+});
+
+// Route for updating blog content
+app.post("/update-post", async (req, res) => {
+  let body = req.body;
+  console.log({ body });
+
+  // Blog id
+  let id = body.id;
+
+  // Validation
+  if (
+    !body.title ||
+    !body.content ||
+    !body.image ||
+    !body["author-name"] ||
+    !body["author-image"]
+  ) {
+    return res.status(400).render("error", {
+      message: "Invalid input data. Check your form and submit again",
+    });
+  }
+
+  let blogObj = {
+    title: body.title,
+    content: body.content,
+    image: body.image,
+    author_name: body["author-name"],
+    author_image: body["author-image"],
+  };
+
+  let db = client.db("blog");
+  let collection = db.collection("blog");
+
+  let result = await collection.updateOne(
+    { _id: new ObjectId(id) },
+    { $set: blogObj }
+  );
+  console.log({ result });
+
+  res.redirect(`/posts/${id}`);
 });
 
 app.listen(port, () => console.log(`Server running at port ${port}`));
